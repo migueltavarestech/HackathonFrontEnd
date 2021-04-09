@@ -19,8 +19,16 @@ body {
 }
 
 header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: lightgrey;
   margin-top: 10px;
+}
+
+header > img {
+  width: 70%;
+  max-width: 400px;
 }
 
 header > h1 {
@@ -83,6 +91,13 @@ main {
   height: 35px;
   font-size: 0.9rem;
   padding: 0;
+  background-color: #522e90;
+}
+
+#sign-in-btn:hover {
+  background-color: white;
+  border: #522e90 solid 2px;
+  color:#522e90;
 }
 
 #sign-in-btn + div {
