@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&family=Quicksand&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -5,6 +7,7 @@
 body {
   background-color: #fff;
   height: 100vh;
+  font-family: 'Quicksand', sans-serif;
   border-right: 20px solid white;
   border-left: 20px solid white;
 }
@@ -19,12 +22,22 @@ body {
 }
 
 header {
-  color: lightgrey;
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: grey;
+  margin-top: 15px;
+}
+
+header > img {
+  width: 70%;
+  max-width: 400px;
 }
 
 header > h1 {
+  font-family: 'Balsamiq Sans', cursive;
   font-size: 1rem;
+  margin-top: 10px;
 }
 
 main {
@@ -36,6 +49,7 @@ main {
 }
 
 .mood-card {
+  font-family: 'Balsamiq Sans', cursive;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -75,7 +89,6 @@ main {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
-
 }
 
 #sign-in-btn {
@@ -83,6 +96,13 @@ main {
   height: 35px;
   font-size: 0.9rem;
   padding: 0;
+  background-color: #522e90;
+}
+
+#sign-in-btn:hover {
+  background-color: white;
+  border: #522e90 solid 2px;
+  color:#522e90;
 }
 
 #sign-in-btn + div {
