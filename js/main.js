@@ -115,16 +115,7 @@ const fetchIdea = (type) => {
         },
         success: function (res) {
             console.log(res);
-<<<<<<< HEAD
-            $("#root").load("idea.html", () => {
-                $("#idea-title").html(res.title);
-                $("#idea-description").html(res.description);
-                $(document).on("click", "#back-arrow", init);
-                reshuffle();
-            });
-=======
-            breakingNut(res);      
->>>>>>> master
+            breakingNut(res);    
         },
     });
 }
@@ -161,10 +152,8 @@ const reshuffle = () => { $("#reshuffle-button").click(function(event){
         contentType: "application/json; charset=utl-8",
         success: function(result) {
             console.log(result);
-            breakingNut(result);
-            $("#idea-title").html(result.title);
-            $("#idea-description").html(result.description);
             $("#reshuffle-button").attr("hidden", true);
+            breakingNut(result);
         }
     })
 })};
@@ -173,13 +162,14 @@ function breakingNut(res) {
     var seconds = 5;
     $("#sign-in").hide();
     $("main").html('<img src="img/cracker2.gif"/>');
-    $("#idea-main").html('<img src="img/cracker2.gif" class="container-fluid mt-3"/>');
+    $("#idea-main").html('<div class="row"><img src="img/cracker2.gif" class="img-center"/></div>');
     setInterval(function () {
         seconds--;
         if (seconds == 0) {
             $("#root").load("idea.html", () => {
                 $("#idea-title").html(res.title);
                 $("#idea-description").html(res.description);
+                $(document).on("click", "#back-arrow", init);
                 reshuffle();
             });
         }
