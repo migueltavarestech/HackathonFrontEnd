@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    $("#root").load("snippets/landing.html");
+    $("#root").load("snippets/landing.html", () => colorMyPencils());
 
     $(document).on("click", "#evil", (e) => {
         fetchIdea("EVIL_GENIUS");
@@ -31,4 +31,30 @@ const fetchIdea = (type) => {
             });
         },
     });
+}
+
+
+const randomizeColors = () => {
+    const colors = ['#522e90', '#00b25a', '#00549d', '#fa981d', '#f2674a'];
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+    
+    return shuffleArray(colors);
+}
+
+const colorMyPencils = () => {
+    const colors = randomizeColors();
+    
+    $("#evil").css("border-color", colors[0]);
+    $("#good").css("border-color", colors[1]);
+    $("#adventure").css("border-color", colors[2]);
+    $("#normal").css("border-color", colors[3]);
+    $("body").css("border-right-color", colors[3]);
+    $("body").css("border-left-color", colors[1]);
 }
