@@ -115,7 +115,9 @@ const fetchIdea = (type) => {
         },
         success: function (res) {
             console.log(res);
-            breakingNut(res);    
+            
+            breakingNut(res);
+            
         },
     });
 }
@@ -152,6 +154,7 @@ const reshuffle = () => { $("#reshuffle-button").click(function(event){
         contentType: "application/json; charset=utl-8",
         success: function(result) {
             console.log(result);
+            getImage(result); 
             $("#idea-title").html(result.title);
             $("#idea-description").html(result.description);
             $("#reshuffle-button").attr("hidden", true);
@@ -168,7 +171,8 @@ function breakingNut(res) {
     setInterval(function () {
         seconds--;
         if (seconds == 0) {
-            $("#root").load("idea.html", () => {
+            $("#root").load("idea.html", () => { 
+                getImage(res);   
                 $("#idea-title").html(res.title);
                 $("#idea-description").html(res.description);
                 $(document).on("click", "#back-arrow", init);
@@ -176,4 +180,11 @@ function breakingNut(res) {
             });
         }
     }, 600);
+}
+
+function getImage(res) {
+
+    var imagePath = "img/idea" + res.id + ".png";
+    $("#idea-pic").attr("src", imagePath);
+
 }
