@@ -39,7 +39,7 @@ const fetchIdea = (type) => {
 
 
 const randomizeColors = () => {
-    const colors = ['#522e90', '#00b25a', '#00549d', '#fa981d', '#f2674a'];
+    const colors = ['#00b25a', '#00549d', '#fa981d', '#f2674a'];
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
