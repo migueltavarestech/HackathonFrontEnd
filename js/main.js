@@ -7,10 +7,18 @@ $(document).ready(() => {
 
 const init = () => {
     $("#root").load("snippets/landing.html", () => {
+        $(document).on("click", "#main-logo", init);
         colorMyPencils()
         attachIdeasEventListeners();
         if (!isLogged) {
-            $("#sign-in").load("snippets/loginButton.html");
+            $("#sign-in").load("snippets/loginButton.html", () => {
+                $(document).on("click", "#sign-up-btn", (e) => {
+                    e.preventDefault();
+                    $("#root").load("/snippets/signup.html", () => {
+                        $(document).on("click", "#main-logo", init);
+                    });
+                })
+            });
         }
     });
 
@@ -37,7 +45,7 @@ const attachLoginEventListener = () => {
             },
             success: function () {
                 isLogged = true;
-                $("#root").load("snippets/landingLogged.html", attachIdeasEventListeners());
+                init();
             },
         });
     })   
@@ -59,7 +67,10 @@ const attachIdeasEventListeners = () => {
         fetchIdea("NORMAL");
     });
     $(document).on("click", "#sign-in-btn", (e) => {
-        $("#root").load("snippets/login.html", attachLoginEventListener());
+        $("#root").load("snippets/login.html", () => {
+            $(document).on("click", "#main-logo", init);
+            attachLoginEventListener}
+            );
     })
 }
 
