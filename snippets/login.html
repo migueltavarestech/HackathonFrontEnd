@@ -7,13 +7,21 @@
 
     <section id="sign-in">
         <main>
-            <form>
-                <label for="email" name="email">Email</label>
-                <input type="text" id="email" name="email"></input>
-                <label for="password" name="password">Password</label>
-                <input type="password" id="password" name="password"></input>
+            <form style="display: flex; flex-direction: column; align-items: center;">
+                <label for="email" name="email" hidden>Email</label>
+                <input type="text" id="email" name="email" placeholder="email"></input>
+                <label for="password" name="password" hidden>Password</label>
+                <input type="password" id="password" name="password" placeholder="password"></input>
             </form>
         </main>
+
+        <!--
+
+        <button id="sign-in-btn" type="button" class="btn btn-dark btn-lg" data-bs-toggle="button"
+            autocomplete="off" style="width: 210px; height: 35px; margin-top: 20px; font-size: 0.9rem; padding: 0; background-color: #522e90;
+          ">Sign In</button>
+        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 5px"><a>Forgot Password?</a>
+        -->
 
         <button id="sign-in-btn" type="button" class="btn btn-dark btn-lg" data-bs-toggle="button"
             autocomplete="off">Sign In</button>

@@ -15,6 +15,7 @@ const init = () => {
                 $(document).on("click", "#sign-up-btn", (e) => {
                     e.preventDefault();
                     $("#root").load("/snippets/signup.html", () => {
+                        attachSignupEventListener();
                         $(document).on("click", "#main-logo", init);
                     });
                 })
@@ -52,6 +53,33 @@ const attachLoginEventListener = () => {
     
 }
 
+const attachSignupEventListener = () => {
+    
+    $(document).on("click", "#sign-up-btn", (e) => {
+        e.preventDefault();
+
+        var data = {
+            email: $("#email").val(),
+            password: $("#password").val(),
+        };
+
+        $.ajax({
+            url: "https://hackathon-backend2.herokuapp.com/api/signup",
+            type: "POST",
+            data: JSON.stringify(data),
+            datatype: "json",
+            contentType: "application/json; charset=utf-8",
+            error: function (xhr) {
+                console.log("Error: " + xhr.statusText);
+            },
+            success: function () {
+                isLogged = true;
+                init();
+            },
+        });
+    })   
+    
+}
 const attachIdeasEventListeners = () => {
     
     $(document).on("click", "#evil", (e) => {
@@ -69,8 +97,8 @@ const attachIdeasEventListeners = () => {
     $(document).on("click", "#sign-in-btn", (e) => {
         $("#root").load("snippets/login.html", () => {
             $(document).on("click", "#main-logo", init);
-            attachLoginEventListener}
-            );
+            attachLoginEventListener();
+        });
     })
 }
 
