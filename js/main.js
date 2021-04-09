@@ -1,3 +1,5 @@
+var lastType = "";
+
 $(document).ready(() => {
     $("#root").load("snippets/landing.html", () => colorMyPencils());
 
@@ -16,6 +18,7 @@ $(document).ready(() => {
 })
 
 const fetchIdea = (type) => {
+    lastType = type;
     $.ajax({
         url: "https://hackathon-backend2.herokuapp.com/api/idea/generate/" + type,
         type: "GET",
@@ -28,6 +31,7 @@ const fetchIdea = (type) => {
             $("#root").load("idea.html", () => {
                 $("#idea-title").html(res.title);
                 $("#idea-description").html(res.description);
+                reshuffle();
             });
         },
     });
@@ -58,3 +62,17 @@ const colorMyPencils = () => {
     $("body").css("border-right-color", colors[3]);
     $("body").css("border-left-color", colors[1]);
 }
+
+const reshuffle = () => { $("#reshuffle-button").click(function(event){
+    $.ajax({
+        url: "https://hackathon-backend2.herokuapp.com/api/idea/generate/" + lastType,
+        type: "GET",
+        contentType: "application/json; charset=utl-8",
+        success: function(result) {
+            console.log(result);
+            $("#idea-title").html(result.title);
+            $("#idea-description").html(result.description);
+            $("#reshuffle-button").attr("hidden", true);
+        }
+    })
+})};
