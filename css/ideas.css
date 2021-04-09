@@ -5,3 +5,46 @@
     width: 100%;
     text-align: center;
 }
+
+body {
+    
+}
+
+h1 {
+    font-family: "Chewy", sans-serif;
+}
+
+#myNavbar {
+    background-color: #522e90;
+    color: white;
+}
+
+svg {
+    fill: white;
+}
+
+#shuffle-button {
+    background-color: #522e90;
+    color: white;
+}
+
+#more-button {
+    background-color: #00549d;
+    color: white;
+}
+
+.green {
+    background-color: #00b25a;
+    color: white;
+}
+
+#myHamburger {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.left-5 {
+    margin-left: 5px !important;
+}
+
+
