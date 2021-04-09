@@ -152,8 +152,10 @@ const reshuffle = () => { $("#reshuffle-button").click(function(event){
         contentType: "application/json; charset=utl-8",
         success: function(result) {
             console.log(result);
+            $("#idea-title").html(result.title);
+            $("#idea-description").html(result.description);
             $("#reshuffle-button").attr("hidden", true);
-            breakingNut(result);
+            $(document).on("click", "#back-arrow", init);
         }
     })
 })};
