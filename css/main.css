@@ -4,6 +4,9 @@
 
 body {
   background-color: #fff;
+  height: 100vh;
+  border-right: 20px solid #522e90;
+  border-left: 20px solid #f2674a;
 }
 
 #root {
