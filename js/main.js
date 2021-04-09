@@ -162,7 +162,7 @@ function breakingNut(res) {
     var seconds = 5;
     $("#sign-in").hide();
     $("main").html('<img src="img/cracker2.gif"/>');
-    $("#idea-main").html('<img src="img/cracker2.gif" class="container-fluid mt-3"/>');
+    $("#idea-main").html('<div class="row"><img src="img/cracker2.gif" class="img-center"/></div>');
     setInterval(function () {
         seconds--;
         if (seconds == 0) {
