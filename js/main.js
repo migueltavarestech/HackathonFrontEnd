@@ -2,39 +2,33 @@ $(document).ready(() => {
     $("#root").load("snippets/landing.html");
 
     $(document).on("click", "#evil", (e) => {
-        const data = fetchIdea("ADVENTURE");
-
-        $("#root").load("snippets/idea.html");
-        $("#idea-title").innerHTML = data.title;
-        $("#idea-description").innerHTML = data.description;
-        
+        fetchIdea("EVIL_GENIUS");
     });
     $(document).on("click", "#good", (e) => {
-        console.log('body');
+        fetchIdea("GOOD_HEART");
     });
     $(document).on("click", "#adventure", (e) => {
-        console.log('body');
+        fetchIdea("ADVENTURE");
     });
     $(document).on("click", "#normal", (e) => {
-        console.log('body');
+        fetchIdea("NORMAL");
     });
 })
 
-
 const fetchIdea = (type) => {
-    let data;
     $.ajax({
         url: "https://hackathon-backend2.herokuapp.com/api/idea/generate/" + type,
-        type: "POST",
-        data: JSON.stringify(data),
-        datatype: "json",
+        type: "GET",
         contentType: "application/json; charset=utf-8",
         error: function (xhr) {
             alert("Error: " + xhr.statusText);
         },
-        success: function () {
-            data = fetchCustomers();
+        success: function (res) {
+            console.log(res);
+            $("#root").load("idea.html", () => {
+                $("#idea-title").html(res.title);
+                $("#idea-description").html(res.description);
+            });
         },
     });
-    return data;
 }
