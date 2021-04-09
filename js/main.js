@@ -1,8 +1,51 @@
 var lastType = "";
+var isLogged = false;
 
 $(document).ready(() => {
-    $("#root").load("snippets/landing.html", () => colorMyPencils());
+    init();
+})
 
+const init = () => {
+    $("#root").load("snippets/landing.html", () => {
+        colorMyPencils()
+        attachIdeasEventListeners();
+        if (!isLogged) {
+            $("#sign-in").load("snippets/loginButton.html");
+        }
+    });
+
+};
+
+const attachLoginEventListener = () => {
+    
+    $(document).on("click", "#sign-in-btn", (e) => {
+        e.preventDefault();
+
+        var data = {
+            email: $("#email").val(),
+            password: $("#password").val(),
+        };
+
+        $.ajax({
+            url: "https://hackathon-backend2.herokuapp.com/api/signin",
+            type: "POST",
+            data: JSON.stringify(data),
+            datatype: "json",
+            contentType: "application/json; charset=utf-8",
+            error: function (xhr) {
+                console.log("Error: " + xhr.statusText);
+            },
+            success: function () {
+                isLogged = true;
+                $("#root").load("snippets/landingLogged.html", attachIdeasEventListeners());
+            },
+        });
+    })   
+    
+}
+
+const attachIdeasEventListeners = () => {
+    
     $(document).on("click", "#evil", (e) => {
         fetchIdea("EVIL_GENIUS");
     });
@@ -15,7 +58,10 @@ $(document).ready(() => {
     $(document).on("click", "#normal", (e) => {
         fetchIdea("NORMAL");
     });
-})
+    $(document).on("click", "#sign-in-btn", (e) => {
+        $("#root").load("snippets/login.html", attachLoginEventListener());
+    })
+}
 
 const fetchIdea = (type) => {
     lastType = type;
@@ -31,6 +77,7 @@ const fetchIdea = (type) => {
             $("#root").load("idea.html", () => {
                 $("#idea-title").html(res.title);
                 $("#idea-description").html(res.description);
+                $(document).on("click", "#back-arrow", init);
                 reshuffle();
             });
         },
