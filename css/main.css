@@ -157,4 +157,21 @@ svg {
   margin-left: 5px !important;
 }
 
+#idea-content {
+  max-width: 300px;
+}
 
+#idea-pic {
+  width: 300px;
+}
+
+.img-center {
+  margin: auto;
+  display: block;
+}
+
+@media (min-width: 991.98px) {
+  #idea-description {
+    text-align: center;
+  }
+}
