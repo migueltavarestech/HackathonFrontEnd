@@ -17,6 +17,8 @@ $(document).ready(() => {
     });
 })
 
+// const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+
 const fetchIdea = (type) => {
     lastType = type;
     $.ajax({
@@ -28,15 +30,10 @@ const fetchIdea = (type) => {
         },
         success: function (res) {
             console.log(res);
-            $("#root").load("idea.html", () => {
-                $("#idea-title").html(res.title);
-                $("#idea-description").html(res.description);
-                reshuffle();
-            });
+            breakingNut(res);      
         },
     });
 }
-
 
 const randomizeColors = () => {
     const colors = ['#00b25a', '#00549d', '#fa981d', '#f2674a'];
@@ -70,9 +67,27 @@ const reshuffle = () => { $("#reshuffle-button").click(function(event){
         contentType: "application/json; charset=utl-8",
         success: function(result) {
             console.log(result);
+            breakingNut(result);
             $("#idea-title").html(result.title);
             $("#idea-description").html(result.description);
             $("#reshuffle-button").attr("hidden", true);
         }
     })
 })};
+
+function breakingNut(res) {
+    var seconds = 5;
+    $("#sign-in").hide();
+    $("main").html('<img src="img/cracker2.gif"/>');
+    $("#idea-main").html('<img src="img/cracker2.gif" class="container-fluid mt-3"/>');
+    setInterval(function () {
+        seconds--;
+        if (seconds == 0) {
+            $("#root").load("idea.html", () => {
+                $("#idea-title").html(res.title);
+                $("#idea-description").html(res.description);
+                reshuffle();
+            });
+        }
+    }, 600);
+}
